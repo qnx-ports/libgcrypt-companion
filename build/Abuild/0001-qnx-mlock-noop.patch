@@ -1,0 +1,15 @@
+diff -Naur libgcrypt-1.10.3-base/src/secmem.c libgcrypt-1.10.3/src/secmem.c
+--- libgcrypt-1.10.3-base/src/secmem.c	2023-10-19 03:53:31
++++ libgcrypt-1.10.3/src/secmem.c	2025-05-29 16:07:38
+@@ -329,8 +329,9 @@
+       show_warning = 1;
+       not_locked = 1;
+     }
+-
+-#elif defined(HAVE_MLOCK)
++// TODO: check if we should enable this and note that you need to enable it in
++// procmngr
++#elif defined(HAVE_MLOCK) && !defined ( __QNX__ )
+   uid_t uid;
+   int err;
+ 
